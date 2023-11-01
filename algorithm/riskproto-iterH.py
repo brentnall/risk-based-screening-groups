@@ -44,14 +44,11 @@ def runmodel(): # Run the model:
                 mysolve.summary()
                 mydf2 = mysolve.result
                 mydf2['h'] = np.repeat(idH, mysolve.nX)
-                #mydf = pd.concat([mydf, mysolve.result])
                 mydf = pd.concat([mydf, mydf2])
                 mya2[idx,:] = [idH, mysolve.sol['primal objective']] 
-                #mysolve.write_csv()
             else:
                 print("Could not solve")
 	
-    #print(mydf)
     mydf.to_csv("out.csv") 
     pd.DataFrame(mya2).to_csv("out2.csv")
 

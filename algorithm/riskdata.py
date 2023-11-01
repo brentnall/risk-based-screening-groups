@@ -37,8 +37,6 @@ class RiskData:
 
         self.advcan_interval = float(self.config['node_positive_interval']['b'])
 
-        print(self.advcan_interval)
-
         self.H = float(self.config['max_capacity']['H'])
 
 

@@ -1,17 +1,26 @@
 # risk-based-screening-groups
 
-An algorithm to help decide risk groups for risk adapted screening
+Code and data used in the paper `An optimization framework to guide choice of thresholds for risk-based cancer screening' by Adam R Brentnall, Emma C Atakpa, Harry Hill, Ruggiero Santeramo, Celeste Damiani, Jack Cuzick, Giovanni Montana, Stephen W Duffy. The repository enables reproduction of the analysis done in the paper.
 
-## Overview 
+The files are organised in two directories
+
+1. `algorithm`: python code to solve the optimisation problem, with input as described for the application in the paper.
+1. `paper-analysis`: R code and data files output from the algorithm, that enable the figures in the paper.
+ 
+## Algorithm overview 
 
 The main routines are:
 
-- **riskproto.py**: python code to optimise risk groups given constraints in `config.ini`
-- **riskproto-iterH.py**: python code to optimise risk groups by looping over different values of the constraint (hard coded)
+- **riskproto.py**: python code to optimise risk groups given constraints in `config.ini`, and input csv file (default is `input/input.csv`)
+- **riskproto-iterH.py**: python code to optimise risk groups by looping over different values of the constraint (hard coded), given input file
 
-The `input` folder contains csv files for the scenarios considered in the current paper.
+The `input` sub-directory contains csv files for the scenarios considered in the paper. 
 
-Output is generated in a csv file `output.csv`.
+## Analysis R code overview
+
+The R script `reprod-eval.R` may be used to reproduce the charts presented in the paper. These scripts use data in the sub-directory `data` and output to the sub-directory `figures`.
+
+The `data` sub-directory includes several csv files with the prefix `output`. These were obtained by running the algorithm using input files in `algorithm`. It also includes the data from Supplementary Table 1 (`mirai-centiles.csv`), and data underlying Figure 1 (`histo.csv`).
  
 # License
 

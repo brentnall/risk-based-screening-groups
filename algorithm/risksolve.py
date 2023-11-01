@@ -3,7 +3,7 @@
     
 """Class to solve screening allocation problem
 
-Reads and stores input / output data
+Linear program
 """
 
 __version__ = '0.1'
@@ -78,34 +78,24 @@ class RiskSolve:
         #2. All No more than 100% patients in group invited
         G2 = spmatrix(1.0, range(nX), range(nX))
         h2 = matrix( (np.repeat(1.0,nX)).reshape(nX,1) )
-        #print(np.array(G2))
-        #print(np.array(h2))
         
         #3. total allocation is 1
         A3 = matrix( np.tile(np.identity(nRISKGROUPS), nRISKSTRAT))
         b3 = matrix(np.repeat(1.0, nRISKGROUPS))
-        #print(np.array(A3))
-        #print(b3)
 
         #4.constrain the resources
         G4 = matrix(my_n * my_h)
         h4 = matrix(my_boundH)
-        #print(np.array(G4))
-        #print(h4)
         
         ## objective
         mycost = matrix( (my_n * ( my_r * (my_s * my_a + (1 - my_s) * my_b) ) ).reshape(nX,1))
-        print(np.array(mycost))
         
         ## set up complete LP
         A = matrix([A3])
         b = matrix([b3])
 
-        #G = matrix([G1a, G1b, G2, G4 ])
-        #h = matrix([h1a, h1b, h2, h4 ])
         G = matrix([G1a, G1b, G2, G4  ])
         h = matrix([h1a, h1b, h2, h4  ])
-        #print(h)
         
         c = matrix(mycost)
         ## solve
